@@ -5,3 +5,5 @@ mkdir .github
 cp -r github/* .github
 # And copy gitignore to .gitignore
 cp gitignore .gitignore
+# While we're at it... remove .ipynb_checkpoints
+rm -rf .ipynb_checkpoints

@@ -12,6 +12,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
   "pytz",
+  "IPython",
 ]
 classifiers = [
     "Programming Language :: Python :: 3",

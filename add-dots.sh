@@ -5,6 +5,3 @@ mkdir .github
 cp -r github/* .github
 # And copy gitignore to .gitignore
 cp gitignore .gitignore
-git add -A .
-git commit -m "Auto-push"
-git push

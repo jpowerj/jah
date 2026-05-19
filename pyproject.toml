@@ -3,13 +3,16 @@ requires = ["hatchling >= 1.26"]
 build-backend = "hatchling.build"
 [project]
 name = "jah"
-version = "1.0.0"
+version = "1.0.2"
 authors = [
   { name="Jeff Jacobs", email="jj1088@georgetown.edu" },
 ]
 description = "Autohinter for data science assignments"
 readme = "README.md"
 requires-python = ">=3.10"
+dependencies = [
+  "pytz",
+]
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",

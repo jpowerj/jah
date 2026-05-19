@@ -42,17 +42,17 @@ def gen_submit_button(assignment_id):
     enqueue_time = datetime.datetime.now()
     jah_job = q.enqueue("jahtask.grade_user", "DSAN5650", assignment_id, username, cur_ts)
     time.sleep(0.2)
-    while jag_job.is_queued:
+    while jah_job.is_queued:
         output.clear_output()
         elapsed = _get_elapsed(enqueue_time)
         with output: print(f"Submission in queue (elapsed time: {str(elapsed)})...")
         time.sleep(0.5)
-    while jag_job.is_started:
+    while jah_job.is_started:
         output.clear_output()
         elapsed = _get_elapsed(enqueue_time)
         with output: print(f"Notebook execution started (elapsed time: {str(elapsed)})...")
         time.sleep(1)
-    if jag_job.is_finished:
+    if jah_job.is_finished:
         output.clear_output()
         elapsed = _get_elapsed(enqueue_time)
         result_fpath = f'{assignment_id}/feedback/{netid}_{assignment_id}_{cur_ts}.html'

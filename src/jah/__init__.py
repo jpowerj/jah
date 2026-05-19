@@ -25,7 +25,7 @@ def gen_submit_button(assignment_id):
   from redis import Redis
   from rq import Queue
   jfe = ipylab.JupyterFrontEnd()
-  button, output = ipywidgets.Button(description="Submit HW1"), ipywidgets.Output()
+  button, output = ipywidgets.Button(description=f'Submit {assignment_id}'), ipywidgets.Output()
   IPython.display.display(button, output)
   
   def _on_button_clicked(b):
@@ -40,7 +40,7 @@ def gen_submit_button(assignment_id):
     netid = username.replace("jupyter-","")
     q = Queue(connection=Redis())
     enqueue_time = datetime.datetime.now()
-    jag_job = q.enqueue("jagtask.grade_user", "DSAN5650", "HW1", username, cur_ts)
+    jah_job = q.enqueue("jahtask.grade_user", "DSAN5650", assignment_id, username, cur_ts)
     time.sleep(0.2)
     while jag_job.is_queued:
         output.clear_output()
@@ -55,7 +55,7 @@ def gen_submit_button(assignment_id):
     if jag_job.is_finished:
         output.clear_output()
         elapsed = _get_elapsed(enqueue_time)
-        result_fpath = f'HW1/feedback/{netid}_HW1_{cur_ts}.html'
+        result_fpath = f'{assignment_id}/feedback/{netid}_{assignment_id}_{cur_ts}.html'
         with output: print(f"Grading complete! Opening {result_fpath}...")
         jfe.commands.execute('docmanager:open-browser-tab', args={'path': result_fpath})
     else:

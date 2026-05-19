@@ -2,7 +2,7 @@
 # So, this renames "github" to ".github" before pushing
 rm -rf .github
 mkdir .github
-cp -r "github/*" ./.github
+cp -r github/* .github
 git add -A .
 git commit -m "Auto-push"
 git push

@@ -61,4 +61,4 @@ def gen_submit_button(assignment_id):
   jfe = ipylab.JupyterFrontEnd()
   button, output = ipywidgets.Button(description="Submit HW1"), ipywidgets.Output()
   IPython.display.display(button, output)
-  button.on_click(on_button_clicked)
+  button.on_click(_on_button_clicked)

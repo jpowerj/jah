@@ -13,13 +13,6 @@ def fetch_corrections(assignment_id):
   corrections_content = md_content + f"\n\nLast fetched: {exec_timestamp}"
   display(Markdown(corrections_content))
 
-def _generate_timestamp(datetime_obj):
-  return str(datetime_obj).split(".")[0].replace(" ","_").replace(":","").replace("-","")
-
-def _get_elapsed(t0):
-  elapsed_delta = datetime.datetime.now() - t0
-  return elapsed_delta.seconds
-
 def gen_submit_button(assignment_id):
   import datetime, getpass, ipylab, ipywidgets, IPython.display, pytz, time
   from redis import Redis
@@ -27,6 +20,13 @@ def gen_submit_button(assignment_id):
   jfe = ipylab.JupyterFrontEnd()
   button, output = ipywidgets.Button(description=f'Submit {assignment_id}'), ipywidgets.Output()
   IPython.display.display(button, output)
+
+  def _generate_timestamp(datetime_obj):
+    return str(datetime_obj).split(".")[0].replace(" ","_").replace(":","").replace("-","")
+
+  def _get_elapsed(t0):
+    elapsed_delta = datetime.datetime.now() - t0
+    return elapsed_delta.seconds
   
   def _on_button_clicked(b):
     with output: print("Saving notebook...")

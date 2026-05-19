@@ -1,4 +1,3 @@
-# @title Assignment Corrections (Run Cell to Fetch / Refresh)
 def fetch(assignment_id):
   import base64, datetime, json, pytz
   from urllib.request import urlopen

@@ -58,6 +58,9 @@ Copyright &copy; 2026 <a href='mailto:jj1088@georgetown.edu'>Jeff Jacobs</a>
 # Read more: https://zensical.org/docs/customization/#additional-css
 #
 #extra_css = ["stylesheets/extra.css"]
+extra_css = [
+  "https://unpkg.com/katex@0/dist/katex.min.css"
+]
 
 # With the `extra_javascript` option you can add your own JavaScript to your
 # project to customize the behavior according to your needs.
@@ -66,8 +69,12 @@ Copyright &copy; 2026 <a href='mailto:jj1088@georgetown.edu'>Jeff Jacobs</a>
 #
 # Read more: https://zensical.org/docs/customization/#additional-javascript
 extra_javascript = [
-    "javascripts/mathjax.js",
-    "https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"
+  # MathJax
+    # "javascripts/mathjax.js",
+    # "https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"
+    "javascripts/katex.js",
+    "https://unpkg.com/katex@0/dist/katex.min.js",
+    "https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"
 ]
 
 repo_name = "jpowerj/jah"
@@ -134,7 +141,7 @@ features = [
     # will generate a button that allows the user to view the Markdown
     # code for the current page.
     # https://zensical.org/docs/setup/repository/#content-actions
-    "content.action.view",
+    # "content.action.view",
 
     # Code annotations allow you to add an icon with a tooltip to your
     # code blocks to provide explanations at crucial points.
@@ -322,5 +329,5 @@ pygments_lang_class = true
 [project.markdown_extensions.pymdownx.snippets]
 [project.markdown_extensions.pymdownx.superfences]
 [project.markdown_extensions.pymdownx.arithmatex]
-# generic = true
+generic = true
 

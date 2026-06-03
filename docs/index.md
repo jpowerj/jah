@@ -5,7 +5,7 @@ icon: material/home
 
 Assignments will be **manually graded**, and these grades will be entered on Canvas. The AutoHinter is just provided as an additional tool to help "nudge" you through assignments, providing hints wherever you may get stuck[^1]. Your workflow should look as follows, where you can use the AutoHinter as part of an "iterated development" process:
 
-## Stage 1A: Working Until You Get Stuck $\leadsto$ Asking For A Hint
+## Stage 1A: Working Until You Get Stuck $\leadsto$ Asking For A Hint!
 
 The idea of the AutoHinter is that whenever you find yourself stuck on a given assignment, rather than having to give up or wait until Jeff replies to an email/chat, you can click the "Get AutoHint Report" button at the top of the assignment! This launches the following process:
 

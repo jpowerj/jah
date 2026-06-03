@@ -11,7 +11,7 @@
 # The site_name is shown in the page header and the browser window title
 #
 # Read more: https://zensical.org/docs/setup/basics/#site_name
-site_name = "JAG Autohinter Documentation"
+site_name = "JAG AutoHinter (JAH) Documentation"
 
 # The site_description is included in the HTML head and should contain a
 # meaningful description of the site content for use by search engines.
@@ -66,10 +66,14 @@ Copyright &copy; 2026 <a href='mailto:jj1088@georgetown.edu'>Jeff Jacobs</a>
 #
 # Read more: https://zensical.org/docs/customization/#additional-javascript
 #extra_javascript = ["javascripts/extra.js"]
+extra_javascript = [
+    "javascripts/mathjax.js",
+    "https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"
+]
 
 repo_name = "jpowerj/jah"
 repo_url = "https://github.com/jpowerj/jah"
-# edit_uri = "https://github.com/jpowerj/docs/edit/master/docs/"
+# edit_uri = "https://github.com/jpowerj/docs/edit/main/docs/"
 
 # ----------------------------------------------------------------------------
 # Section for configuring theme options
@@ -311,6 +315,9 @@ link = "https://github.com/jpowerj/jah"
 
 [project.markdown_extensions.def_list]
 [project.markdown_extensions.attr_list]
+[project.markdown_extensions.footnotes]
+[project.markdown_extensions.md_in_html]
+[project.markdown_extensions.zensical.extensions.glightbox]
 [project.markdown_extensions.pymdownx.highlight]
 anchor_linenums = true
 line_spans = "__span"
@@ -318,3 +325,6 @@ pygments_lang_class = true
 # [project.markdown_extensions.pymdownx.inlinehilite]
 [project.markdown_extensions.pymdownx.snippets]
 [project.markdown_extensions.pymdownx.superfences]
+[project.markdown_extensions.pymdownx.arithmatex]
+generic = true
+

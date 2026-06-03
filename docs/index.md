@@ -5,6 +5,45 @@ icon: material/home
 
 Assignments will be **manually graded**, and these grades will be entered on Canvas. The AutoHinter is just provided as an additional tool to help "nudge" you through assignments, providing hints wherever you may get stuck[^1]. Your workflow should look as follows, where you can use the AutoHinter as part of an "iterated development" process:
 
+## Stage 0: Understanding the Response Cells
+
+Before starting your work on an assignment, the main important thing to note is that **the AutoHinter infers which lines of code are associated with which questions** by looking at the **special "cell title" comment at the top of the response cells**: the comment on the first line of the code cell of the form
+
+```python
+# @title <QID>-response
+```
+
+where `<QID>` is the AutoHinter's "internal ID" for the cell.
+
+This means that, for example, the AutoHinter "knows" that the following cell contains your response to **Question 1.1** on your HW1 because of the `# @title Q1.1-response` comment in the first line of the cell:
+
+```python
+# @title Q1.1-response
+def compute_diff(df):
+    # Step 1: Create a new DataFrame called enrolled_df, containing *only* the
+    # rows in college_df where the student ended up enrolling in the school
+
+    enrolled_df = None # Your code here (replace the None)
+    
+    # Step 2: Compute mean earnings for students who enrolled in *private* schools
+    
+    private_mean = None # Your code here (replace the None)
+    
+    # Step 3: Compute mean earnings for students who enrolled in *public* schools
+    
+    public_mean = None # Your code here (replace the None)
+    
+    # Step 4: Compute the *difference* between these two means
+    # (the mean earnings for students who enrolled in private schools minus the
+    # mean earnings for students who enrolled in public schools)
+
+    mean_diff = None # Your code here (replace the None)
+
+    # Step 5: Return the computed difference (this step is done for you!)
+    
+    return mean_diff
+```
+
 ## Stage 1A: Working Until You Get Stuck $\leadsto$ Asking For A Hint!
 
 The idea of the AutoHinter is that whenever you find yourself stuck on a given assignment, rather than having to give up or wait until Jeff replies to an email/chat, you can click the "Get AutoHint Report" button at the top of the assignment! This launches the following process:

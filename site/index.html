@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#stage-1a-working-until-you-get-stuck-leadsto-asking-for-a-hint" class="md-skip">
+        <a href="#stage-0-understanding-the-response-cells" class="md-skip">
           Skip to content
         </a>
       
@@ -369,6 +369,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#stage-0-understanding-the-response-cells" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Stage 0: Understanding the Response Cells
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#stage-1a-working-until-you-get-stuck-leadsto-asking-for-a-hint" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -474,6 +485,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#stage-0-understanding-the-response-cells" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Stage 0: Understanding the Response Cells
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#stage-1a-working-until-you-get-stuck-leadsto-asking-for-a-hint" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -535,6 +557,37 @@
   <h1 id="__skip">JAH Overview</h1>
 
 <p>Assignments will be <strong>manually graded</strong>, and these grades will be entered on Canvas. The AutoHinter is just provided as an additional tool to help "nudge" you through assignments, providing hints wherever you may get stuck<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. Your workflow should look as follows, where you can use the AutoHinter as part of an "iterated development" process:</p>
+<h2 id="stage-0-understanding-the-response-cells">Stage 0: Understanding the Response Cells</h2>
+<p>Before starting your work on an assignment, the main important thing to note is that <strong>the AutoHinter infers which lines of code are associated with which questions</strong> by looking at the <strong>special "cell title" comment at the top of the response cells</strong>: the comment on the first line of the code cell of the form</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># @title &lt;QID&gt;-response</span>
+</span></code></pre></div>
+<p>where <code>&lt;QID&gt;</code> is the AutoHinter's "internal ID" for the cell.</p>
+<p>This means that, for example, the AutoHinter "knows" that the following cell contains your response to <strong>Question 1.1</strong> on your HW1 because of the <code># @title Q1.1-response</code> comment in the first line of the cell:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># @title Q1.1-response</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_diff</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="c1"># Step 1: Create a new DataFrame called enrolled_df, containing *only* the</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="c1"># rows in college_df where the student ended up enrolling in the school</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">enrolled_df</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># Your code here (replace the None)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="c1"># Step 2: Compute mean earnings for students who enrolled in *private* schools</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">private_mean</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># Your code here (replace the None)</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="c1"># Step 3: Compute mean earnings for students who enrolled in *public* schools</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="n">public_mean</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># Your code here (replace the None)</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span class="c1"># Step 4: Compute the *difference* between these two means</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="c1"># (the mean earnings for students who enrolled in private schools minus the</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="c1"># mean earnings for students who enrolled in public schools)</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="n">mean_diff</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># Your code here (replace the None)</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>    <span class="c1"># Step 5: Return the computed difference (this step is done for you!)</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    <span class="k">return</span> <span class="n">mean_diff</span>
+</span></code></pre></div>
 <h2 id="stage-1a-working-until-you-get-stuck-leadsto-asking-for-a-hint">Stage 1A: Working Until You Get Stuck <span class="arithmatex">\(\leadsto\)</span> Asking For A Hint!</h2>
 <p>The idea of the AutoHinter is that whenever you find yourself stuck on a given assignment, rather than having to give up or wait until Jeff replies to an email/chat, you can click the "Get AutoHint Report" button at the top of the assignment! This launches the following process:</p>
 <ol>

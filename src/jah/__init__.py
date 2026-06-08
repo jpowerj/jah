@@ -96,7 +96,7 @@ def gen_submit_button(assignment_id):
     source_fpath = f'/home/{username}/{assignment_id}/{notebook_fname}'
     dest_notebook_suffix = notebook_fname.replace(".ipynb",f'_{cur_ts}.ipynb')
     dest_notebook_fname = f'{netid}_{dest_notebook_suffix}'
-    submission_root = f'/srv/submissions/{netid}/{assignment_id}'
+    submission_root = f'/home/{username}/submissions/{assignment_id}'
     pathlib.Path(submission_root).mkdir(parents=True, exist_ok=True)
     target_fpath = f'{submission_root}/{dest_notebook_fname}'
     shutil.copy(source_fpath, target_fpath)

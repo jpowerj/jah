@@ -69,7 +69,7 @@ def gen_hint_button(assignment_id):
   button.on_click(_on_button_clicked)
 
 def gen_submit_button(assignment_id, notebook_fname):
-  import datetime, getpass, ipylab, ipywidgets, IPython.display, pytz, shutil, time
+  import datetime, getpass, ipylab, ipywidgets, IPython.display, pathlib, pytz, shutil, time
   jfe = ipylab.JupyterFrontEnd()
   button = ipywidgets.Button(
     description=f'Submit {assignment_id} for Grading',
@@ -93,8 +93,11 @@ def gen_submit_button(assignment_id, notebook_fname):
     netid = username.replace("jupyter-","")
     # And copy
     source_fpath = f'/home/{username}/{assignment_id}/{notebook_fname}'
-    dest_notebook_fname = f'{netid}_{notebook_fname}'
-    target_fpath = f'/home/jupyter-dsan/submissions/{assignment_id}/{dest_notebook_fname}'
+    dest_notebook_suffix = notebook_fname.replace(".ipynb",f'{cur_ts}.ipynb')
+    dest_notebook_fname = f'{netid}_{dest_notebook_suffix}'
+    submission_root = f'/srv/submissions/{netid}/{assignment_id}'
+    pathlib.Path(submission_root).mkdir(parents=True, exist_ok=True)
+    target_fpath = f'{submission_root}/{dest_notebook_fname}'
     shutil.copy(source_fpath, target_fpath)
     # Completion message
     output.clear_output()

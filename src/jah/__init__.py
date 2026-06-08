@@ -93,7 +93,7 @@ def gen_submit_button(assignment_id, notebook_fname):
     netid = username.replace("jupyter-","")
     # And copy
     source_fpath = f'/home/{username}/{assignment_id}/{notebook_fname}'
-    dest_notebook_suffix = notebook_fname.replace(".ipynb",f'{cur_ts}.ipynb')
+    dest_notebook_suffix = notebook_fname.replace(".ipynb",f'_{cur_ts}.ipynb')
     dest_notebook_fname = f'{netid}_{dest_notebook_suffix}'
     submission_root = f'/srv/submissions/{netid}/{assignment_id}'
     pathlib.Path(submission_root).mkdir(parents=True, exist_ok=True)

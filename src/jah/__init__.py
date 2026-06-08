@@ -18,7 +18,11 @@ def gen_hint_button(assignment_id):
   from redis import Redis
   from rq import Queue
   jfe = ipylab.JupyterFrontEnd()
-  button, output = ipywidgets.Button(description=f'Get Hints for {assignment_id}'), ipywidgets.Output()
+  button = ipywidgets.Button(
+    description=f'Get Hints for {assignment_id}',
+    layout=ipywidgets.Layout(width='250px')
+  )
+  output = ipywidgets.Output()
   IPython.display.display(button, output)
 
   def _generate_timestamp(datetime_obj):
@@ -67,8 +71,11 @@ def gen_hint_button(assignment_id):
 def gen_submit_button(assignment_id, notebook_fname):
   import datetime, getpass, ipylab, ipywidgets, IPython.display, pytz, shutil, time
   jfe = ipylab.JupyterFrontEnd()
-  button, output = ipywidgets.Button(
-    description=f'Submit {assignment_id} for Grading'), ipywidgets.Output()
+  button = ipywidgets.Button(
+    description=f'Submit {assignment_id} for Grading',
+    layout=ipywidgets.Layout(width='250px'),
+  ) 
+  output = ipywidgets.Output()
   IPython.display.display(button, output)
 
   def _generate_timestamp(datetime_obj):

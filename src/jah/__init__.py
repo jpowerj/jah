@@ -13,12 +13,12 @@ def fetch_corrections(assignment_id):
   corrections_content = md_content + f"\n\nLast fetched: {exec_timestamp}"
   display(Markdown(corrections_content))
 
-def gen_submit_button(assignment_id):
+def gen_hint_button(assignment_id):
   import datetime, getpass, ipylab, ipywidgets, IPython.display, pytz, time
   from redis import Redis
   from rq import Queue
   jfe = ipylab.JupyterFrontEnd()
-  button, output = ipywidgets.Button(description=f'Submit {assignment_id}'), ipywidgets.Output()
+  button, output = ipywidgets.Button(description=f'Get Hints for {assignment_id}'), ipywidgets.Output()
   IPython.display.display(button, output)
 
   def _generate_timestamp(datetime_obj):
@@ -35,7 +35,7 @@ def gen_submit_button(assignment_id):
     cur_time = datetime.datetime.now(pytz.timezone('US/Eastern'))
     cur_ts = _generate_timestamp(cur_time)
     output.clear_output()
-    with output: print(f"Submitting assignment (submission timestamp {cur_ts})...")
+    with output: print(f"Getting hints for assignment (hint submission timestamp {cur_ts})...")
     username = getpass.getuser()
     netid = username.replace("jupyter-","")
     q = Queue(connection=Redis())
@@ -45,7 +45,7 @@ def gen_submit_button(assignment_id):
     while jah_job.is_queued:
         output.clear_output()
         elapsed = _get_elapsed(enqueue_time)
-        with output: print(f"Submission in queue (elapsed time: {str(elapsed)})...")
+        with output: print(f"Notebook in queue (elapsed time: {str(elapsed)})...")
         time.sleep(0.5)
     while jah_job.is_started:
         output.clear_output()
@@ -56,10 +56,41 @@ def gen_submit_button(assignment_id):
         output.clear_output()
         elapsed = _get_elapsed(enqueue_time)
         result_fpath = f'{assignment_id}/feedback/{netid}_{assignment_id}_{cur_ts}.html'
-        with output: print(f"Grading complete! Opening {result_fpath}...")
+        with output: print(f"Hint report complete! Opening {result_fpath}...")
         jfe.commands.execute('docmanager:open-browser-tab', args={'path': result_fpath})
     else:
         output.clear_output()
-        with output: print(f"Submission error (please retry, and if the issue persists, email dsan5650-staff@georgetown.edu)")
+        with output: print(f"AutoHinter error (please retry, and if the issue persists, email dsan5650-staff@georgetown.edu)")
+  
+  button.on_click(_on_button_clicked)
+
+def gen_submit_button(assignment_id, notebook_fname):
+  import datetime, getpass, ipylab, ipywidgets, IPython.display, pytz, shutil, time
+  jfe = ipylab.JupyterFrontEnd()
+  button, output = ipywidgets.Button(
+    description=f'Submit {assignment_id} for Grading'), ipywidgets.Output()
+  IPython.display.display(button, output)
+
+  def _generate_timestamp(datetime_obj):
+    return str(datetime_obj).split(".")[0].replace(" ","_").replace(":","").replace("-","")
+  
+  def _on_button_clicked(b):
+    with output: print("Saving notebook...")
+    jfe.commands.execute('docmanager:save')
+    time.sleep(0.2)
+    cur_time = datetime.datetime.now(pytz.timezone('US/Eastern'))
+    cur_ts = _generate_timestamp(cur_time)
+    output.clear_output()
+    with output: print(f"Submitting assignment (submission timestamp {cur_ts})...")
+    username = getpass.getuser()
+    netid = username.replace("jupyter-","")
+    # And copy
+    source_fpath = f'/home/{username}/{assignment_id}/{notebook_fname}'
+    dest_notebook_fname = f'{netid}_{notebook_fname}'
+    target_fpath = f'/home/jupyter-dsan/submissions/{assignment_id}/{dest_notebook_fname}'
+    shutil.copy(source_fpath, target_fpath)
+    # Completion message
+    output.clear_output()
+    with output: print(f"Assignment submitted! Instructors now have a copy, {dest_notebook_fname}, that will be used for grading.")
   
   button.on_click(_on_button_clicked)

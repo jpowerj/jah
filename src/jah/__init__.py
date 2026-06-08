@@ -68,7 +68,7 @@ def gen_hint_button(assignment_id):
   
   button.on_click(_on_button_clicked)
 
-def gen_submit_button(assignment_id, notebook_fname):
+def gen_submit_button(assignment_id):
   import datetime, getpass, ipylab, ipywidgets, IPython.display, pathlib, pytz, shutil, time
   jfe = ipylab.JupyterFrontEnd()
   button = ipywidgets.Button(
@@ -92,6 +92,7 @@ def gen_submit_button(assignment_id, notebook_fname):
     username = getpass.getuser()
     netid = username.replace("jupyter-","")
     # And copy
+    notebook_fname = f'DSAN5650_{assignment_id}.ipynb'
     source_fpath = f'/home/{username}/{assignment_id}/{notebook_fname}'
     dest_notebook_suffix = notebook_fname.replace(".ipynb",f'_{cur_ts}.ipynb')
     dest_notebook_fname = f'{netid}_{dest_notebook_suffix}'
